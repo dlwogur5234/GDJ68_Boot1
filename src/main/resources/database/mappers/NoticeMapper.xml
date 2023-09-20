@@ -7,13 +7,13 @@
   	<sql id="forPager">
 		<choose>
 			<when test="kind=='1'">
-				boardtitle 
+				boardTitle 
 			</when>
 			<when test="kind=='2'">
-				boardcontents 
+				boardContents 
 			</when>
 			<otherwise>
-				boardwriter 
+				boardWriter 
 			</otherwise>
 		</choose>
 	
@@ -21,17 +21,17 @@
   	
   	<select id="getCount" parameterType="Pager" resultType="Long">
   		<bind name="pattern" value="'%'+_parameter.getSearch()+'%'"/>
-  		select COUNT(boardno) from notice
+  		select COUNT(boardNo) from NOTICE
   		where <include refid="forPager"></include>
   		LIKE #{pattern}
   	</select>
   
   	<select id="getList" parameterType="Pager" resultType="NoticeVO" >
-  		select * from notice 
+  		select * from NOTICE 
   		where 
   				<include refid="forPager"></include>
   		 		like concat('%', #{search}, '%')
-		order by boardno desc 
+		order by boardNo desc 
 		limit #{startRow}, #{lastRow}
   	</select>
   	
