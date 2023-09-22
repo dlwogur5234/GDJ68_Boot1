@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -23,13 +24,30 @@
                     </form>
 
                     <!-- Topbar Navbar -->
+                    <c:if test="${empty member }">
+	                    <ul class="navbar-nav ml-auto">
+	                    	<li class="nav-item">
+	                    		<a class="nav-link" href="/member/join" id="join" role="button" aria-expanded="false">
+                                	<i class="fas fa-user-plus"></i>
+                            	</a>
+	                    	</li>
+	                    	
+	                    	<li class="nav-item">
+	                    		<a class="nav-link" href="/member/login" id="login" role="button" aria-expanded="false">
+                                	<i class="	fas fa-user-lock"></i>
+                            	</a>
+	                    	</li>
+	                    </ul>
+                    </c:if>
+                    
+                    <c:if test="${not empty member}">
                     <ul class="navbar-nav ml-auto">
-
+					
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
+                                <i class="fas fa-bell"></i>
                             </a>
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
@@ -41,7 +59,7 @@
                                             aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
+                                                <i class="fas fa-user-circle"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -183,9 +201,9 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/member/update">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    정보수정
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -200,6 +218,6 @@
                         </li>
 
                     </ul>
-
+					</c:if>
                 </nav>
                 <!-- End of Topbar -->
